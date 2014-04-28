@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.farng.mp3.*;
 import org.farng.mp3.id3.AbstractID3;
@@ -10,6 +11,8 @@ public class mp3 {
 	private String title;
 	private String artist;
 	private String version;
+	
+	private String identifier;
 	
 	private AbstractID3 id;
 	private MP3File mp3; 
@@ -25,6 +28,7 @@ public class mp3 {
 		this.title = getSongName(this.mp3);
 		this.artist = getSongArtist(this.mp3);
 		this.version = getID3Version();
+		setIdentifier();
 	}
 	
 	private String getSongArtist(MP3File mp3) {
@@ -83,4 +87,19 @@ public class mp3 {
 		this.artist = targetName;
 	}
 
+	private void setIdentifier(){
+		String title = this.title.toLowerCase();
+		String id = "";
+		for(int i = 0; i < title.length(); i++){
+			char letter = title.charAt(i);
+			if(letter > 96 && letter < 123){
+				id += letter;
+			}
+		}
+		this.identifier = id;		
+	}
+
+	public String getIdentifier(){
+		return this.identifier;
+	}
 }

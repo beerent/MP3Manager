@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class songManager {
@@ -7,8 +9,12 @@ public class songManager {
 	private File folder;
 	private ArrayList<mp3> songs;
 	
+	public songManager(){
+		this.folder = null;
+	}
+	
 	public songManager(File f){
-		if(!f.exists()){
+		if(fileExists(f)){
 			System.out.println("file " + f.getAbsolutePath() + " does not exist");
 			folder = null;
 		}else{
@@ -20,6 +26,15 @@ public class songManager {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private boolean fileExists(File f){
+		return f.exists();
+	}
+	
+	public void setMP3Folder(String dir){
+		this.folder = new File("/", dir);
+		System.out.println(this.folder.getAbsolutePath());
 	}
 	
 	public static void main(String [] args){

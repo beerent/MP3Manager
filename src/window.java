@@ -1,16 +1,19 @@
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class window extends JFrame{
 	
-	private String folderLocation;
+	private songManager songMan;
+	
 	public window(){
-		this.folderLocation = "";
+		songMan = new songManager();
 		setTitle("MP3 Manager");
 		setSize(500, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);	
@@ -25,10 +28,15 @@ public class window extends JFrame{
             	getMusicFolder();
             }
         });      
- 
-		selectButton.setSize(200,100);
-        this.getContentPane().add(selectButton);
+
+		//selectButton.setLayout(null);
+
+		JPanel buttonPane = new JPanel();
+		buttonPane.add(selectButton);
+
+        this.getContentPane().add(buttonPane, BorderLayout.NORTH);
         //this.pack();
+        this.setLocation(500, 500);
         this.setVisible(true);
 	}
 	
@@ -51,11 +59,12 @@ public class window extends JFrame{
 		//display mini frame
 		musicInputFrame.setLayout(new GridLayout(2, 1));
 		musicInputFrame.pack();
+		musicInputFrame.setLocation(550, 550);
 		musicInputFrame.setVisible(true);
 	}
 	
 	public void setMP3Folder(String dir){
-		this.folderLocation = dir;
+		this.songMan.setMP3Folder(dir);
 	}
 	
 	public static void main(String[] args) {

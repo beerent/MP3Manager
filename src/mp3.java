@@ -55,7 +55,7 @@ public class mp3 {
 			System.out.println(mp.getSongName());
 			System.out.println(mp.getID3Version());
 			mp.setSongArtist("50 Tyson");
-			mp.setSongName("niggers in the house");
+			mp.setSongName("in the house");
 			System.out.println(mp.getSongArtist());
 			System.out.println(mp.getSongName());
 		} catch (Exception e) {e.printStackTrace();}
